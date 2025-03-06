@@ -1,1 +1,11 @@
-<p>home works!</p>
+<div class="mx-auto py-2 px-6 sm:py-6 psm:x-10">
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4" *ngIf="products$ | async as products">
+        <div *ngFor="let product of products">
+            <app-product-card [product]="product"></app-product-card>
+        </div>
+    </div>
+
+    <div *ngIf="!(products$ | async)">
+        Loading products...
+    </div>
+</div>

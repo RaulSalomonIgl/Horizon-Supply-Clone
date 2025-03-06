@@ -1,0 +1,21 @@
+<div class="flex items-center">
+    <!-- Iteramos sobre el número de estrellas -->
+    <ng-container *ngFor="let _ of [].constructor(maxRating); let index = index">
+        <svg *ngIf="index < rating" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400 fill-yellow-400"
+            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <polygon
+                points="12 17.27 18.18 21 15.54 13.97 21 9.24 13.81 8.63 12 2 10.19 8.63 3 9.24 8.46 13.97 5.82 21 12 17.27">
+            </polygon>
+        </svg>
+        <svg *ngIf="index >= rating" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-300"
+            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <polygon
+                points="12 17.27 18.18 21 15.54 13.97 21 9.24 13.81 8.63 12 2 10.19 8.63 3 9.24 8.46 13.97 5.82 21 12 17.27">
+            </polygon>
+        </svg>
+    </ng-container>
+    <!-- Mostrar la calificación -->
+    <span class="ml-2 text-sm text-gray-600">{{ rating.toFixed(1) }}</span>
+</div>

@@ -1,0 +1,115 @@
+<!-- Modal -->
+<div *ngIf="open" class="fixed inset-0 z-50 flex items-center justify-center bg-black/75 bg-opacity-50">
+    <div class="bg-white p-8 rounded-lg max-w-4xl w-full">
+        <!-- Header del Modal -->
+        <div class="relative mb-8">
+            <h2 class="text-xl font-semibold">{{ product.title }}</h2>
+            <button
+                class="absolute right-4 top-4 h-8 w-8 rounded-full p-0 opacity-50 hover:opacity-100 hover:cursor-pointer"
+                (click)="closeQuickview()" aria-label="Cerrar">
+                <app-svg-icon iconName="x" class="size-5"></app-svg-icon>
+                <span class="sr-only">Close icon</span>
+            </button>
+        </div>
+
+        <div class="grid gap-8 pt-4 md:grid-cols-2">
+            <!-- Galería de imágenes -->
+            <div class="space-y-4">
+                <div class="relative aspect-square overflow-hidden rounded-lg bg-gray-100">
+                    <img [src]="product.images[selectedImage] || '/placeholder.svg'" [alt]="product.title"
+                        class="object-cover w-full h-full" />
+                </div>
+                <!-- Thumbnail Slider -->
+                <div class="relative">
+                    <div class="grid grid-cols-4 gap-4">
+                        @for(image of product.images.slice(startIndex, startIndex + 4); track $index){
+                        <button [ngClass]="{
+                     'relative aspect-square h-20 flex-shrink-0 overflow-hidden rounded-lg border-2': true,
+                     'border-gray-600': selectedImage === $index,
+                     'border-transparent': selectedImage !== $index
+                   }" (click)="selectedImage = $index">
+                            <img [src]="image || '/placeholder.svg'" [alt]="product.title + ' ' + ($index + 1)"
+                                class="object-cover w-full h-full" />
+                        </button>
+                        }
+                    </div>
+
+                    <!-- Navigation Buttons -->
+                    @if (startIndex > 0) {
+                    <button type="button" (click)="previousImages()"
+                        class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 bg-black hover:bg-black/90 text-white font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 hover:cursor-pointer">
+                        &leftarrow;
+                        <span class="sr-only">Icon previous images</span>
+                    </button>
+                    }
+
+                    @if (startIndex < this.product.media.length - 4) { <button type="button" (click)="nextImages()"
+                        class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 bg-black hover:bg-black/90 text-white font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 hover:cursor-pointer">
+                        &rightarrow;
+                        <span class="sr-only">Icon next images</span>
+                        </button>
+                        }
+
+                </div>
+            </div>
+
+            <!-- Información del producto -->
+            <div class="space-y-6">
+                <div>
+                    <h2 class="text-3xl font-bold">{{ product.price | currency }}</h2>
+                    <div className="mt-2">
+                        <app-star-rating [rating]="4.3" [maxRating]="5" />
+                    </div>
+                </div>
+
+                <!-- Selector de tallas -->
+                <div class="space-y-2">
+                    <h3 class="font-medium">SIZE</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <button *ngFor="let size of product.variants" [ngClass]="{
+                  'rounded border px-4 py-2 text-sm': true,
+                  'border-black bg-black text-white': selectedSize === size.title,
+                  'border-gray-200 hover:border-black': selectedSize !== size.title
+                }" (click)="selectedSize = size.title">
+                            {{ size.title }}
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Control de cantidad -->
+                <div class="space-y-2">
+                    <h3 class="font-medium">Quantity</h3>
+                    <div class="flex w-fit items-center gap-2 rounded-lg border border-gray-200">
+                        <button class="p-2 hover:bg-gray-100" (click)="handleQuantityChange('decrease')">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 12H6">
+                                </path>
+                            </svg>
+                        </button>
+                        <span class="w-12 text-center">{{ quantity }}</span>
+                        <button class="p-2 hover:bg-gray-100" (click)="handleQuantityChange('increase')">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 6v12m6-6H6">
+                                </path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Botones de acción -->
+                <div class="flex flex-col gap-4">
+                    <button class="w-full bg-black px-4 py-2 text-white hover:bg-black/90">ADD TO CART</button>
+                    <button class="w-full gap-2 border border-gray-200 px-4 py-2 text-sm">ADD TO WISHLIST</button>
+                </div>
+
+                <!-- Descripción y cuidados -->
+                <div class="space-y-4 text-sm">
+                    <p [innerHTML]="product.description"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
