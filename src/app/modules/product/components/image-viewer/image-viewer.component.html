@@ -1,0 +1,37 @@
+<div class="space-y-4">
+    <div class="relative aspect-square overflow-hidden rounded-lg bg-gray-100">
+        <img [src]="media[selectedImage].src || '/placeholder.svg'" [alt]="media[selectedImage].alt"
+            class="object-cover w-full h-full" />
+    </div>
+    <!-- Thumbnail Slider -->
+    <div class="relative">
+        <div class="grid grid-cols-4 gap-4">
+            @for(image of media.slice(startIndex, startIndex + 4); track $index){
+            <button [ngClass]="{
+         'relative aspect-square h-20 flex-shrink-0 overflow-hidden rounded-lg border-2': true,
+         'border-gray-600': selectedImage === media.indexOf(image),
+         'border-transparent hover:cursor-pointer': selectedImage !== media.indexOf(image)
+       }" (click)="selectedImage = media.indexOf(image)">
+                <img [src]="image.src || '/placeholder.svg'" [alt]="image.alt" class="object-cover w-full h-full" />
+            </button>
+            }
+        </div>
+
+        <!-- Navigation Buttons -->
+        @if (startIndex > 0) {
+        <button type="button" (click)="previousImages()"
+            class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 bg-black hover:bg-black/90 text-white font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 hover:cursor-pointer">
+            &leftarrow;
+            <span class="sr-only">Icon previous images</span>
+        </button>
+        }
+
+        @if (startIndex < this.media.length - 4) { <button type="button" (click)="nextImages()"
+            class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 bg-black hover:bg-black/90 text-white font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 hover:cursor-pointer">
+            &rightarrow;
+            <span class="sr-only">Icon next images</span>
+            </button>
+            }
+
+    </div>
+</div>

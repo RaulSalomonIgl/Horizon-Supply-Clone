@@ -4,11 +4,24 @@ import { Product } from '../../core/entities/product.model';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { StarRatingComponent } from '../../../../components/star-rating/star-rating.component';
 import { SvgIconComponent } from '../../../../icons/svg-icon/svg-icon.component';
+import { ChooseQuantityComponent } from '../../../../components/choose-quantity/choose-quantity.component';
+import { ImageViewerComponent } from '../image-viewer/image-viewer.component';
+import { ActionButtonsComponent } from '../action-buttons/action-buttons.component';
+import { SizeSelectorComponent } from '../size-selector/size-selector.component';
 
 @Component({
   selector: 'app-quick-view',
   standalone: true,
-  imports: [CommonModule, CurrencyPipe, StarRatingComponent, SvgIconComponent],
+  imports: [
+    CommonModule,
+    CurrencyPipe,
+    StarRatingComponent,
+    SvgIconComponent,
+    ChooseQuantityComponent,
+    ImageViewerComponent,
+    ActionButtonsComponent,
+    SizeSelectorComponent,
+  ],
   templateUrl: './quick-view.component.html',
   styleUrl: './quick-view.component.css',
 })
@@ -17,11 +30,7 @@ export class QuickViewComponent implements OnInit {
   @Output() openChange = new EventEmitter<boolean>(); // Emite el cambio de visibilidad
   @Input() product!: Product;
 
-  selectedSize: string = '';
   quantity: number = 1;
-  selectedImage: number = 0;
-  startIndex: number = 0; // Índice para las imágenes mostradas
-  itemsPerPage: number = 3; // Número de imágenes a mostrar
 
   // Método para deshabilitar el desplazamiento del fondo
   private disableBackgroundScroll() {
@@ -37,33 +46,8 @@ export class QuickViewComponent implements OnInit {
     this.disableBackgroundScroll();
   }
 
-  handleQuantityChange(action: 'increase' | 'decrease'): void {
-    if (action === 'increase') {
-      this.quantity += 1;
-    } else if (action === 'decrease' && this.quantity > 1) {
-      this.quantity -= 1;
-    }
-  }
-
   closeQuickview() {
     this.openChange.emit(false);
     this.enableBackgroundScroll();
-  }
-
-  setCover(p_index: number) {
-    this.selectedImage = p_index;
-  }
-
-  nextImages(): void {
-    if (this.startIndex + this.itemsPerPage < this.product.images.length) {
-      this.startIndex += this.itemsPerPage;
-    }
-  }
-
-  // Función para retroceder en las imágenes
-  previousImages(): void {
-    if (this.startIndex > 0) {
-      this.startIndex -= this.itemsPerPage;
-    }
   }
 }

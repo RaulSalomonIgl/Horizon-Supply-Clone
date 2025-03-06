@@ -1,0 +1,13 @@
+<div class="space-y-2">
+    <h3 class="font-medium">SIZE</h3>
+    <div class="flex flex-wrap gap-2">
+        <button *ngFor="let size of variants" class="px-4 py-2 text-sm rounded" [ngClass]="{
+        'border cursor-pointer': size.available,
+        'cursor-not-allowed': !size.available,
+        'border-black bg-black text-white': selectedSize === size.title && size.available,
+        'border-gray-200 hover:border-black': selectedSize !== size.title
+      }" (click)="selectedSize = size.title" [disabled]="!size.available">
+            {{ size.title }}
+        </button>
+    </div>
+</div>
