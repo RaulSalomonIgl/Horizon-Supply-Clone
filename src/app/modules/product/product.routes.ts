@@ -5,6 +5,6 @@ import { SearchComponent } from './pages/search/search.component';
 
 export const PRODUCT_ROUTES: Routes = [
   { path: 'product/:id', component: ProductComponent }, // Ruta para ver los detalles de un producto específico
-  { path: 'category/:category', component: ProductCategoryComponent }, // Ruta para filtrar productos por categoría
+  { path: 'collections/:category', component: ProductCategoryComponent }, // Ruta para filtrar productos por categoría
   { path: 'search/:query', component: SearchComponent }, // Ruta para buscar productos
 ];

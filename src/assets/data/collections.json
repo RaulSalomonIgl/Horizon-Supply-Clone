@@ -1,300 +1,88 @@
-{
-    "urlset": {
-      "url": [
-        {
-          "loc": {
-            "_text": "https://www.horizonsupply.co/collections/everything"
-          },
-          "lastmod": {
-            "_text": "2025-03-04T21:35:36+00:00"
-          },
-          "changefreq": {
-            "_text": "daily"
-          }
-        },
-        {
-          "loc": {
-            "_text": "https://www.horizonsupply.co/collections/guys"
-          },
-          "lastmod": {
-            "_text": "2024-07-22T11:58:41+01:00"
-          },
-          "changefreq": {
-            "_text": "daily"
-          }
-        },
-        {
-          "loc": {
-            "_text": "https://www.horizonsupply.co/collections/girls"
-          },
-          "lastmod": {
-            "_text": "2024-07-22T11:58:41+01:00"
-          },
-          "changefreq": {
-            "_text": "daily"
-          }
-        },
-        {
-          "loc": {
-            "_text": "https://www.horizonsupply.co/collections/accessories"
-          },
-          "lastmod": {
-            "_text": "2025-03-04T08:15:14+00:00"
-          },
-          "changefreq": {
-            "_text": "daily"
-          }
-        },
-        {
-          "loc": {
-            "_text": "https://www.horizonsupply.co/collections/collection-for-facebook-ads-dont-delete"
-          },
-          "lastmod": {
-            "_text": "2025-03-04T21:35:36+00:00"
-          },
-          "changefreq": {
-            "_text": "daily"
-          }
-        },
-        {
-          "loc": {
-            "_text": "https://www.horizonsupply.co/collections/welcome1"
-          },
-          "lastmod": {
-            "_text": "2025-02-19T21:05:01+00:00"
-          },
-          "changefreq": {
-            "_text": "daily"
-          }
-        },
-        {
-          "loc": {
-            "_text": "https://www.horizonsupply.co/collections/welcome2"
-          },
-          "lastmod": {
-            "_text": "2025-02-19T21:05:01+00:00"
-          },
-          "changefreq": {
-            "_text": "daily"
-          }
-        },
-        {
-          "loc": {
-            "_text": "https://www.horizonsupply.co/collections/newsletter"
-          },
-          "lastmod": {
-            "_text": "2024-07-22T11:58:41+01:00"
-          },
-          "changefreq": {
-            "_text": "daily"
-          }
-        },
-        {
-          "loc": {
-            "_text": "https://www.horizonsupply.co/collections/gift-card"
-          },
-          "lastmod": {
-            "_text": "2025-02-19T21:05:01+00:00"
-          },
-          "changefreq": {
-            "_text": "daily"
-          }
-        },
-        {
-          "loc": {
-            "_text": "https://www.horizonsupply.co/collections/tour"
-          },
-          "lastmod": {
-            "_text": "2025-03-04T16:31:05+00:00"
-          },
-          "changefreq": {
-            "_text": "daily"
-          },
-          "image:image": {
-            "image:loc": {
-              "_text": "https://cdn.shopify.com/s/files/1/0430/3745/collections/58461889_10157279298923658_7759442389747367936_o.jpg?v=1556884093"
-            },
-            "image:title": {
-              "_text": "TOUR"
-            }
-          }
-        },
-        {
-          "loc": {
-            "_text": "https://www.horizonsupply.co/collections/ludens"
-          },
-          "lastmod": {
-            "_text": "2024-07-22T11:58:41+01:00"
-          },
-          "changefreq": {
-            "_text": "daily"
-          }
-        },
-        {
-          "loc": {
-            "_text": "https://www.horizonsupply.co/collections/parasite-eve"
-          },
-          "lastmod": {
-            "_text": "2024-07-22T11:58:41+01:00"
-          },
-          "changefreq": {
-            "_text": "daily"
-          }
-        },
-        {
-          "loc": {
-            "_text": "https://www.horizonsupply.co/collections/obey"
-          },
-          "lastmod": {
-            "_text": "2024-07-22T11:58:42+01:00"
-          },
-          "changefreq": {
-            "_text": "daily"
-          }
-        },
-        {
-          "loc": {
-            "_text": "https://www.horizonsupply.co/collections/teardrops"
-          },
-          "lastmod": {
-            "_text": "2024-07-22T11:58:42+01:00"
-          },
-          "changefreq": {
-            "_text": "daily"
-          }
-        },
-        {
-          "loc": {
-            "_text": "https://www.horizonsupply.co/collections/sale"
-          },
-          "lastmod": {
-            "_text": "2024-07-22T11:58:42+01:00"
-          },
-          "changefreq": {
-            "_text": "daily"
-          }
-        },
-        {
-          "loc": {
-            "_text": "https://www.horizonsupply.co/collections/black-horizon"
-          },
-          "lastmod": {
-            "_text": "2025-03-04T17:15:22+00:00"
-          },
-          "changefreq": {
-            "_text": "daily"
-          }
-        },
-        {
-          "loc": {
-            "_text": "https://www.horizonsupply.co/collections/all-products-2"
-          },
-          "lastmod": {
-            "_text": "2025-02-19T21:05:01+00:00"
-          },
-          "changefreq": {
-            "_text": "daily"
-          }
-        },
-        {
-          "loc": {
-            "_text": "https://www.horizonsupply.co/collections/die4u"
-          },
-          "lastmod": {
-            "_text": "2025-03-04T11:50:20+00:00"
-          },
-          "changefreq": {
-            "_text": "daily"
-          }
-        },
-        {
-          "loc": {
-            "_text": "https://www.horizonsupply.co/collections/strangers"
-          },
-          "lastmod": {
-            "_text": "2025-03-04T02:45:01+00:00"
-          },
-          "changefreq": {
-            "_text": "daily"
-          }
-        },
-        {
-          "loc": {
-            "_text": "https://www.horizonsupply.co/collections/eras"
-          },
-          "lastmod": {
-            "_text": "2025-03-04T18:10:16+00:00"
-          },
-          "changefreq": {
-            "_text": "daily"
-          }
-        },
-        {
-          "loc": {
-            "_text": "https://www.horizonsupply.co/collections/sempiternal"
-          },
-          "lastmod": {
-            "_text": "2025-03-04T18:10:16+00:00"
-          },
-          "changefreq": {
-            "_text": "daily"
-          }
-        },
-        {
-          "loc": {
-            "_text": "https://www.horizonsupply.co/collections/lost"
-          },
-          "lastmod": {
-            "_text": "2025-03-04T21:10:23+00:00"
-          },
-          "changefreq": {
-            "_text": "daily"
-          }
-        },
-        {
-          "loc": {
-            "_text": "https://www.horizonsupply.co/collections/amen"
-          },
-          "lastmod": {
-            "_text": "2025-03-04T19:00:28+00:00"
-          },
-          "changefreq": {
-            "_text": "daily"
-          }
-        },
-        {
-          "loc": {
-            "_text": "https://www.horizonsupply.co/collections/nex-gen"
-          },
-          "lastmod": {
-            "_text": "2025-03-04T21:35:36+00:00"
-          },
-          "changefreq": {
-            "_text": "daily"
-          }
-        },
-        {
-          "loc": {
-            "_text": "https://www.horizonsupply.co/collections/darkside"
-          },
-          "lastmod": {
-            "_text": "2025-03-04T17:15:22+00:00"
-          },
-          "changefreq": {
-            "_text": "daily"
-          }
-        },
-        {
-          "loc": {
-            "_text": "https://www.horizonsupply.co/collections/kool-aid"
-          },
-          "lastmod": {
-            "_text": "2025-03-04T20:35:23+00:00"
-          },
-          "changefreq": {
-            "_text": "daily"
-          }
-        }
-      ]
-    }
+[
+  {
+    "id": 1,
+    "name": "guys"
+  },
+  {
+    "id": 2,
+    "name": "girls"
+  },
+  {
+    "id": 3,
+    "name": "accessories"
+  },
+  {
+    "id": 4,
+    "name": "collection-for-facebook-ads-dont-delete"
+  },
+  {
+    "id": 5,
+    "name": "gift-card"
+  },
+  {
+    "id": 6,
+    "name": "tour",
+    "image": "https://cdn.shopify.com/s/files/1/0430/3745/collections/58461889_10157279298923658_7759442389747367936_o.jpg?v=1556884093",
+    "image_title": "TOUR"
+  },
+  {
+    "id": 7,
+    "name": "ludens"
+  },
+  {
+    "id": 8,
+    "name": "parasite-eve"
+  },
+  {
+    "id": 9,
+    "name": "obey"
+  },
+  {
+    "id": 10,
+    "name": "teardrops"
+  },
+  {
+    "id": 11,
+    "name": "black-horizon"
+  },
+  {
+    "id": 12,
+    "name": "die4u"
+  },
+  {
+    "id": 13,
+    "name": "strangers"
+  },
+  {
+    "id": 14,
+    "name": "eras"
+  },
+  {
+    "id": 15,
+    "name": "sempiternal"
+  },
+  {
+    "id": 16,
+    "name": "lost"
+  },
+  {
+    "id": 17,
+    "name": "amen"
+  },
+  {
+    "id": 18,
+    "name": "post-human:-nex-gen"
+  },
+  {
+    "id": 19,
+    "name": "darkside"
+  },
+  {
+    "id": 20,
+    "name": "kool-aid"
+  },
+  {
+    "id": 21,
+    "name": "sempiternal-10th-anniversary"
   }
+]
