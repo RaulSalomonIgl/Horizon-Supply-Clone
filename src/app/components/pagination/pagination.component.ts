@@ -2,13 +2,13 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-paginator',
+  selector: 'app-pagination',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './paginator.component.html',
-  styleUrl: './paginator.component.css',
+  templateUrl: './pagination.component.html',
+  styleUrl: './pagination.component.css',
 })
-export class PaginatorComponent<T> implements OnInit {
+export class PaginationComponent<T> implements OnInit {
   @Input() items: T[] = []; // Lista completa de elementos
   @Input() itemsPerPage: number = 5; // Cantidad de elementos por página
   @Output() pageChange = new EventEmitter<T[]>(); // Emite los elementos de la página actual
