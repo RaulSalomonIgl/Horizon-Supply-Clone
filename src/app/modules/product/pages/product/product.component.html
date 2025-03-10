@@ -1,1 +1,78 @@
-<p>product works!</p>
+<div class="bg-white rounded-lg mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl" *ngIf="product$ | async as product">
+    <!-- Header del Modal -->
+    <div class="relative mb-8">
+        <nav aria-label="Breadcrumb">
+            <ol role="list" class="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
+                <li>
+                    <div class="flex items-center">
+                        <a href="#" class="mr-2 text-xs font-medium text-gray-900">Product</a>
+                        <svg width="16" height="20" viewBox="0 0 16 20" fill="currentColor" aria-hidden="true"
+                            class="h-5 w-4 text-gray-300">
+                            <path d="M5.697 4.34L8.98 16.532h1.327L7.025 4.341H5.697z" />
+                        </svg>
+                    </div>
+                </li>
+                <li>
+                    <div class="flex items-center">
+                        <a href="#" class="mr-2 text-xs font-medium text-gray-900">{{product.type}}</a>
+                        <svg width="16" height="20" viewBox="0 0 16 20" fill="currentColor" aria-hidden="true"
+                            class="h-5 w-4 text-gray-300">
+                            <path d="M5.697 4.34L8.98 16.532h1.327L7.025 4.341H5.697z" />
+                        </svg>
+                    </div>
+                </li>
+
+                <li class="text-sm">
+                    <a href="#" aria-current="page" class="font-medium text-gray-500 hover:text-gray-600">{{
+                        product.title }}</a>
+                </li>
+            </ol>
+        </nav>
+    </div>
+
+    <div class="grid gap-8 pt-4 md:grid-cols-2">
+        <!-- Galería de imágenes -->
+        <div class="space-y-4">
+            <app-image-viewer [media]="product.media"></app-image-viewer>
+        </div>
+
+        <!-- Información del producto -->
+        <div class="space-y-6">
+            <h1 class="text-4xl font-bold">{{ product.title }}</h1>
+
+            <div>
+                <h2 class="text-2xl font-semibold">{{ product.price | currency }}</h2>
+                <div class="mt-2">
+                    <app-star-rating [rating]="4.3" [maxRating]="5" />
+                </div>
+            </div>
+
+            <!-- Selector de tallas -->
+            <div class="space-y-2">
+                <app-size-selector [variants]="product.variants"></app-size-selector>
+            </div>
+
+            <!-- Control de cantidad -->
+            <div class="space-y-2">
+                <app-choose-quantity></app-choose-quantity>
+            </div>
+
+            <!-- Botones de acción -->
+            <div class="space-y-4">
+                <app-action-buttons></app-action-buttons>
+            </div>
+
+            <!-- Descripción y cuidados -->
+            <div class="space-y-4 text-sm">
+                <p [innerHTML]="product.description"></p>
+            </div>
+
+            <app-summary-chart />
+        </div>
+    </div>
+
+    <app-specifications [product]="product" />
+
+    <app-reviews />
+
+</div>

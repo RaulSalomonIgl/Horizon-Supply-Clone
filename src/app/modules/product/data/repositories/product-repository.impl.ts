@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { catchError, map, Observable, throwError } from 'rxjs';
 import { Product } from '../../core/entities/product.model';
 import { PRODUCT_REPOSITORY } from '../../core/tokens';
 import { ProductRepository } from '../../core/interfaces/product-repository.interface';
@@ -11,7 +11,7 @@ export class ProductRepositoryImpl implements ProductRepository {
 
   getProducts(): Observable<Product[]> {
     return this.http
-      .get<any[]>('/assets/data/products.json')
+      .get<Product[]>('/assets/data/products.json')
       .pipe(
         map((data) =>
           data.map(
@@ -47,6 +47,48 @@ export class ProductRepositoryImpl implements ProductRepository {
           )
         )
       );
+  }
+
+  getProductById(id: number): Observable<Product> {
+    return this.http.get<Product[]>(`/assets/data/products.json`).pipe(
+      map((data) => {
+        const product = data.find((product) => product.id == id);
+
+        if (product === undefined) {
+          throw new Error(`Product with id ${id} not found`);
+        }
+
+        return new Product(
+          product.id,
+          product.title,
+          product.handle,
+          product.description,
+          product.published_at,
+          product.created_at,
+          product.vendor,
+          product.type,
+          product.tags,
+          product.price,
+          product.price_min,
+          product.price_max,
+          product.available,
+          product.price_varies,
+          product.compare_at_price_min,
+          product.compare_at_price_max,
+          product.compare_at_price_varies,
+          product.variants,
+          product.images,
+          product.featured_image,
+          product.options,
+          product.media,
+          product.requires_selling_plan,
+          product.selling_plan_groups,
+          product.content,
+          product.compare_at_price
+        );
+      }),
+      catchError((error) => throwError(() => error))
+    );
   }
 }
 
