@@ -49,17 +49,18 @@
 
             <!-- Selector de tallas -->
             <div class="space-y-2">
-                <app-size-selector [variants]="product.variants"></app-size-selector>
+                <app-size-selector [variants]="product.variants"
+                    (selectedSizeEvent)="setSize($event)"></app-size-selector>
             </div>
 
             <!-- Control de cantidad -->
             <div class="space-y-2">
-                <app-choose-quantity></app-choose-quantity>
+                <app-choose-quantity (changeCountEvent)="setQuantity($event)"></app-choose-quantity>
             </div>
 
             <!-- Botones de acción -->
             <div class="space-y-4">
-                <app-action-buttons></app-action-buttons>
+                <app-action-buttons [isButtonDisabled]="isButtonsDisabled"></app-action-buttons>
             </div>
 
             <!-- Descripción y cuidados -->

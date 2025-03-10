@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Variant } from '../../core/entities/variant.model';
 
 @Component({
@@ -11,6 +11,12 @@ import { Variant } from '../../core/entities/variant.model';
 })
 export class SizeSelectorComponent {
   @Input() variants!: Variant[];
+  @Output() selectedSizeEvent = new EventEmitter<string>();
 
   selectedSize: string = '';
+
+  selectedMeasure(size: string) {
+    this.selectedSize = size;
+    this.selectedSizeEvent.emit(this.selectedSize);
+  }
 }

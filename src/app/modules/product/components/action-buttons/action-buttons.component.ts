@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-action-buttons',
@@ -9,5 +9,5 @@ import { Component } from '@angular/core';
   styleUrl: './action-buttons.component.css',
 })
 export class ActionButtonsComponent {
-  isButtonDisabled: boolean = true;
+  @Input() isButtonDisabled: boolean = true;
 }

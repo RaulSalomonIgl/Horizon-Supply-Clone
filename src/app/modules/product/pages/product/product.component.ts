@@ -35,7 +35,12 @@ import { ReviewsComponent } from '../../components/reviews/reviews.component';
   providers: [PRODUCT_REPOSITORY_PROVIDER, GetProductByIdUseCase],
 })
 export class ProductComponent implements OnInit {
+  private selectedSize: string = '';
+  private selectedQuantity: number = 1;
+
   product$: Observable<Product> = new Observable(); // Observable para el producto
+  isButtonsDisabled: boolean = true;
+
   constructor(
     private route: ActivatedRoute, // Para obtener el parámetro de la ruta
     private getProductById: GetProductByIdUseCase // Caso de uso para obtener el producto
@@ -49,5 +54,14 @@ export class ProductComponent implements OnInit {
         return this.getProductById.execute(productId); // Obtener el producto por ID
       })
     );
+  }
+
+  setSize(size: string) {
+    this.isButtonsDisabled = false;
+    this.selectedSize = size;
+  }
+
+  setQuantity(quantity: number) {
+    this.selectedQuantity = quantity;
   }
 }

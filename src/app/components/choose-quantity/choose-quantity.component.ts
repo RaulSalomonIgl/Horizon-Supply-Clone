@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-choose-quantity',
@@ -8,6 +8,8 @@ import { Component } from '@angular/core';
   styleUrl: './choose-quantity.component.css',
 })
 export class ChooseQuantityComponent {
+  @Output() changeCountEvent = new EventEmitter<number>();
+
   quantity: number = 1;
 
   handleQuantityChange(action: 'increase' | 'decrease'): void {
@@ -16,5 +18,10 @@ export class ChooseQuantityComponent {
     } else if (action === 'decrease' && this.quantity > 1) {
       this.quantity -= 1;
     }
+    this.changeQuantity();
+  }
+
+  changeQuantity() {
+    this.changeCountEvent.emit(this.quantity);
   }
 }
