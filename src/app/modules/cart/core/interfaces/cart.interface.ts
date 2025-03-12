@@ -5,6 +5,7 @@ import { Cart } from '../entities/cart.entity';
 export interface CartInterface {
   getCart(): Observable<Cart>;
   addToCart(item: Item): Observable<void>;
+  updateItemQuantity(itemId: number, quantity: number): Observable<void>;
   removeFromCart(itemId: number): Observable<void>;
   updateCart(cart: Cart): Observable<void>;
   clearCart(): Observable<void>;

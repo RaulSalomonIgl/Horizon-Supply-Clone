@@ -9,9 +9,13 @@ import { CART_REPOSITORY } from '../../core/tokens';
 export class CartRepositoryImpl implements CartInterface {
   private readonly storageKey = 'cart';
 
+  private generarToken(): string {
+    return window.crypto.randomUUID(); // Genera un UUID único
+  }
+
   private createEmptyCart(): Cart {
     return new Cart(
-      '', // token
+      this.generarToken(), // token
       '', // note
       {}, // attributes
       0, // original_total_price
@@ -28,6 +32,25 @@ export class CartRepositoryImpl implements CartInterface {
   }
 
   private updateCartData(cart: Cart): void {
+    const total_price = cart.items.reduce((sum, current) => {
+      return sum + current.price * current.quantity;
+    }, 0);
+
+    const discount = cart.items.reduce((sum, current) => {
+      return sum + current.total_discount;
+    }, 0);
+
+    const weight = cart.items.reduce((sum, current) => {
+      return sum + current.grams;
+    }, 0);
+
+    cart.original_total_price = total_price;
+    cart.total_price = total_price - discount;
+    cart.total_discount = discount;
+    cart.total_weight = weight;
+    cart.item_count = cart.items.length;
+    cart.requires_shipping = cart.items.length > 0;
+    cart.items_subtotal_price = total_price;
     localStorage.setItem(this.storageKey, JSON.stringify(cart));
   }
 
@@ -45,6 +68,24 @@ export class CartRepositoryImpl implements CartInterface {
           existingItem.quantity += item.quantity;
         } else {
           cart.items.push(item);
+        }
+        this.updateCartData(cart);
+        return of(undefined);
+      })
+    );
+  }
+
+  updateItemQuantity(itemId: number, quantityChange: number): Observable<void> {
+    return this.getCart().pipe(
+      switchMap((cart) => {
+        debugger;
+        const item = cart.items.find((i) => i.id === itemId);
+        if (item) {
+          const newQuantity = item.quantity + quantityChange;
+          if (newQuantity > 0) {
+            item.quantity = newQuantity;
+            this.updateCartData(cart);
+          }
         }
         this.updateCartData(cart);
         return of(undefined);

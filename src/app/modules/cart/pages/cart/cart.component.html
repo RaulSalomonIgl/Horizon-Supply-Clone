@@ -1,1 +1,100 @@
-<p>cart works!</p>
+<div class="bg-white rounded-lg mx-auto px-4 sm:px-6 lg:max-w-7xl" *ngIf="cart$ | async as cart">
+    <div class="mx-auto p-4" *ngIf="cart.item_count">
+        <button (click)="onClearCart()"
+            class="font-medium text-indigo-600 hover:text-indigo-500 p-2.5 cursor-pointer">Clear
+            Cart</button>
+        <h1 class="text-2xl font-semibold text-gray-900 mb-8">Shopping Cart</h1>
+
+        <div class="grid sm:grid-cols-2 gap-12">
+            <div class="space-y-6">
+                @for (item of cart.items; track $index) {
+                <div class="flex gap-6 py-6 border-b border-gray-200">
+                    <div class="w-24 h-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                        <img [src]="item.featured_image.url" [alt]="item.featured_image.alt"
+                            class="h-full w-full object-cover object-center" />
+                    </div>
+
+                    <div class="flex flex-1 flex-col">
+                        <div class="flex justify-between text-base font-medium text-gray-900">
+                            <h3>{{item.product_title}}</h3>
+                            <p class="ml-4">{{item.price | currency}}>
+                        </div>
+                        <p class="mt-1 text-xs text-gray-500">{{item.options_with_values[0].name}}</p>
+                        <p class="mt-1 text-sm text-gray-600">{{item.options_with_values[0].value}}</p>
+
+                        <div class="flex flex-1 items-end justify-between text-sm">
+                            <div class="flex items-center gap-1">
+                                @if(!item.taxable){
+                                <div class="flex items-center text-gray-500">
+                                    <p>Not available at the moment</p>
+                                </div>
+                                }
+
+                            </div>
+
+                            <div class="flex items-center gap-4">
+                                <div class="flex items-center rounded-md">
+                                    <button (click)="onDecreaseQuantity(item.id)"
+                                        class="p-1 hover:bg-gray-100 cursor-pointer">
+                                        <app-svg-icon iconName="minus" class="size-4"></app-svg-icon>
+                                    </button>
+                                    <span class="px-2 py-1 min-w-[2rem] text-center">{{item.quantity}}</span>
+                                    <button (click)="onIncreaseQuantity(item.id)"
+                                        class="p-1 hover:bg-gray-100 cursor-pointer">
+                                        <app-svg-icon iconName="plus" class="size-4"></app-svg-icon>
+
+                                    </button>
+                                </div>
+                                <button (click)="onRemoveItem(item.id)"
+                                    class="font-medium text-indigo-600 hover:text-indigo-500 cursor-pointer">
+                                    Remove
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                }
+
+            </div>
+
+            <div class="sm:fixed sm:w-1/2 sm:px-16 items-center justify-end right-0">
+
+                <div class="space-y-4 mt-8">
+                    <div class="flex justify-between text-base font-medium text-gray-900">
+                        <p>Subtotal</p>
+                        <p>{{cart.total_price | currency}}</p>
+                    </div>
+                </div>
+
+                <div class="mt-8 space-y-4">
+                    <button [routerLink]="['/orders/checkout']"
+                        class="w-full bg-indigo-600 hover:bg-indigo-700 text-white p-2.5 cursor-pointer">Checkout</button>
+                    <div class="w-full justify-center items-center text-center">
+                        <a href="#"
+                            class="w-full font-medium text-indigo-600 hover:text-indigo-500 p-2.5 cursor-pointer">
+                            ← Continue Shopping
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div *ngIf="!cart.item_count" class="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
+
+        <div class="text-center">
+            <p class="text-base font-semibold text-indigo-600">Horizon Supply</p>
+            <h1 class="mt-4 text-5xl font-semibold tracking-tight text-balance text-gray-900 sm:text-7xl">Your cart is
+                empty.</h1>
+            <div class="mt-10 flex items-center justify-center gap-x-6">
+                <a href="#"
+                    class="w-1/2 rounded-lg font-medium bg-indigo-600 hover:bg-indigo-700 text-white p-2.5 cursor-pointer">
+                    ← Go Shopping
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>
