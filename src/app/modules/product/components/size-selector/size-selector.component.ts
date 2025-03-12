@@ -11,12 +11,12 @@ import { Variant } from '../../core/entities/variant.model';
 })
 export class SizeSelectorComponent {
   @Input() variants!: Variant[];
-  @Output() selectedSizeEvent = new EventEmitter<string>();
+  @Output() selectedVariantEvent = new EventEmitter<Variant>();
 
-  selectedSize: string = '';
+  selectedVariant: string = '';
 
-  selectedMeasure(size: string) {
-    this.selectedSize = size;
-    this.selectedSizeEvent.emit(this.selectedSize);
+  onSelectedVariant(variant: Variant) {
+    this.selectedVariant = variant.title;
+    this.selectedVariantEvent.emit(variant);
   }
 }

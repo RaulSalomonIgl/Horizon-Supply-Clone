@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-action-buttons',
@@ -10,4 +10,9 @@ import { Component, Input } from '@angular/core';
 })
 export class ActionButtonsComponent {
   @Input() isButtonDisabled: boolean = true;
+  @Output() onClickButton = new EventEmitter<string>();
+
+  onClick(action: 'buy' | 'addToCart' | 'addToWishlist') {
+    this.onClickButton.emit(action);
+  }
 }

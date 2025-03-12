@@ -14,6 +14,10 @@ import { PRODUCT_REPOSITORY_PROVIDER } from '../../data/repositories/product-rep
 import { SummaryChartComponent } from '../../components/summary-chart/summary-chart.component';
 import { SpecificationsComponent } from '../../components/specifications/specifications.component';
 import { ReviewsComponent } from '../../components/reviews/reviews.component';
+import { CART_REPOSITORY_PROVIDER } from '../../../cart/data/repositories/cart-repository.impl';
+import { AddToCartUseCase } from '../../../cart/core/use-cases/add-to-cart.use-case';
+import { Item } from '../../../cart/core/entities/item.entity';
+import { Variant } from '../../core/entities/variant.model';
 
 @Component({
   selector: 'app-product',
@@ -32,10 +36,15 @@ import { ReviewsComponent } from '../../components/reviews/reviews.component';
   ],
   templateUrl: './product.component.html',
   styleUrl: './product.component.css',
-  providers: [PRODUCT_REPOSITORY_PROVIDER, GetProductByIdUseCase],
+  providers: [
+    PRODUCT_REPOSITORY_PROVIDER,
+    GetProductByIdUseCase,
+    CART_REPOSITORY_PROVIDER,
+    AddToCartUseCase,
+  ],
 })
 export class ProductComponent implements OnInit {
-  private selectedSize: string = '';
+  private selectedVariant!: Variant;
   private selectedQuantity: number = 1;
 
   product$: Observable<Product> = new Observable(); // Observable para el producto
@@ -43,7 +52,8 @@ export class ProductComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute, // Para obtener el parámetro de la ruta
-    private getProductById: GetProductByIdUseCase // Caso de uso para obtener el producto
+    private getProductById: GetProductByIdUseCase, // Caso de uso para obtener el producto
+    private addToCart: AddToCartUseCase
   ) {}
 
   ngOnInit(): void {
@@ -56,12 +66,31 @@ export class ProductComponent implements OnInit {
     );
   }
 
-  setSize(size: string) {
+  setVariant(variant: Variant) {
     this.isButtonsDisabled = false;
-    this.selectedSize = size;
+    this.selectedVariant = variant;
   }
 
   setQuantity(quantity: number) {
     this.selectedQuantity = quantity;
+  }
+
+  actionButton(action: string, product: Product) {
+    switch (action) {
+      case 'addToCart':
+        this.onAddToCart(product);
+    }
+  }
+
+  onAddToCart(product: Product) {
+    const item = Item.fromProduct(
+      product,
+      this.selectedQuantity,
+      this.selectedVariant,
+      []
+    ); // Convertir el producto en un Item
+    this.addToCart.execute(item).subscribe(() => {
+      alert('Producto agregado al carrito'); // Mostrar un mensaje de confirmación
+    });
   }
 }

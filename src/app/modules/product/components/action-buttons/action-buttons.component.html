@@ -1,15 +1,16 @@
 <div class="flex flex-col gap-4">
     <button
         class="w-full px-4 py-2 bg-black text-white hover:bg-black/90 cursor-pointer disabled:bg-gray-400 disabled:text-gray-700 disabled:cursor-not-allowed"
-        [disabled]="isButtonDisabled">BUY NOW</button>
+        [disabled]="isButtonDisabled" (click)="onClick('buy')">BUY NOW</button>
 
     <div class="grid grid-cols-2 gap-2.5">
         <button
             class="w-full px-4 py-2 text-sm bg-black text-white hover:bg-black/90 cursor-pointer disabled:bg-gray-400 disabled:text-gray-700 disabled:cursor-not-allowed"
-            [disabled]="isButtonDisabled">ADD
+            [disabled]="isButtonDisabled" (click)="onClick('addToCart')">ADD
             TO CART</button>
 
-        <button class="w-full px-4 py-2 text-sm border border-gray-200 cursor-pointer">ADD
+        <button class="w-full px-4 py-2 text-sm border border-gray-200 cursor-pointer"
+            (click)="onClick('addToWishlist')">ADD
             TO WISHLIST</button>
     </div>
 </div>
