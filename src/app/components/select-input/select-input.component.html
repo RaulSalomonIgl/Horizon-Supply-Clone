@@ -1,0 +1,11 @@
+<div class="mb-6">
+    <label for="countries" class="block mb-2 text-sm font-medium text-gray-900">Select an
+        {{label}}</label>
+    <select id="countries" (change)="onSelected($event)"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+        <option selected [value]="0">Choose a {{label}}</option>
+        @for (option of options; track $index) {
+        <option [value]="option.id">{{option.name}}</option>
+        }
+    </select>
+</div>

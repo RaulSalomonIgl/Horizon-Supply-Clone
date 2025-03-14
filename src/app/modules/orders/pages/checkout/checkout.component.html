@@ -1,1 +1,394 @@
-<p>checkout works!</p>
+<div class="mx-auto max-w-6xl px-4">
+    <div class="flex items-center justify-between">
+        <h1 class="text-2xl font-medium">Checkout</h1>
+        <div class="text-sm text-neutral-500 flex items-center gap-1">
+            <!-- <ShoppingBag class="w-4 h-4" /> -->
+            <span>3 items</span>
+        </div>
+    </div>
+
+    <!-- Express Checkout -->
+    <div>
+        <div class="flex items-center gap-2 mb-4">
+            <div class="h-px flex-1 bg-neutral-100"></div>
+            <span class="text-sm text-neutral-400">Express checkout</span>
+            <div class="h-px flex-1 bg-neutral-100"></div>
+        </div>
+
+        <div class="grid sm:grid-cols-3 gap-3">
+            <button class="bg-[#5A31F4] text-white py-2.5 rounded-md text-sm font-medium cursor-pointer">Shop
+                Pay</button>
+            <button
+                class="bg-[#FFC439] text-[#003087] py-2.5 rounded-md text-sm font-medium cursor-pointer">PayPal</button>
+            <button class="bg-black text-white py-2.5 rounded-md text-sm font-medium cursor-pointer">G Pay</button>
+        </div>
+
+        <div class="flex items-center gap-2 my-6">
+            <div class="h-px flex-1 bg-neutral-100"></div>
+            <span class="text-sm text-neutral-400">Or checkout with</span>
+            <div class="h-px flex-1 bg-neutral-100"></div>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 gap-8 lg:grid-cols-12">
+        <!-- Main Checkout Form -->
+        <div class="lg:col-span-7 space-y-8">
+
+            <ol
+                class="items-center justify-between w-full space-y-4 sm:flex sm:space-x-8 sm:space-y-0 rtl:space-x-reverse">
+                <li class="flex items-center space-x-2.5 rtl:space-x-reverse"
+                    [ngClass]="{'text-blue-600': visibleStep==='contact', 'text-neutral-500': visibleStep !== 'contact'}">
+                    <span class="flex items-center justify-center w-8 h-8 border rounded-full shrink-0"
+                        *ngIf="{'border-blue-600':visibleStep==='contact', 'border-neutral-500': visibleStep !== 'contact'}">
+                        1
+                    </span>
+                    <span>
+                        <h3 class="font-medium leading-tight">Contact info</h3>
+                        <p class="text-sm">Step details here</p>
+                    </span>
+                </li>
+                <li class="flex items-center space-x-2.5 rtl:space-x-reverse"
+                    [ngClass]="{'text-blue-600': visibleStep==='shipping', 'text-neutral-500': visibleStep !== 'shipping'}">
+                    <span class="flex items-center justify-center w-8 h-8 border rounded-full shrink-0"
+                        *ngIf="{'border-blue-600':visibleStep==='shipping', 'border-neutral-500': visibleStep !== 'shipping'}">
+                        2
+                    </span>
+                    <span>
+                        <h3 class="font-medium leading-tight">Shipping info</h3>
+                        <p class="text-sm">Step details here</p>
+                    </span>
+                </li>
+                <li class="flex items-center space-x-2.5 rtl:space-x-reverse"
+                    [ngClass]="{'text-blue-600': visibleStep==='payment', 'text-neutral-500': visibleStep !== 'payment'}">
+                    <span class="flex items-center justify-center w-8 h-8 border rounded-full shrink-0"
+                        *ngIf="{'border-blue-600':visibleStep==='payment', 'border-neutral-500': visibleStep !== 'payment'}">
+                        3
+                    </span>
+                    <span>
+                        <h3 class="font-medium leading-tight">Payment info</h3>
+                        <p class="text-sm">Step details here</p>
+                    </span>
+                </li>
+            </ol>
+
+            <section id="contact" class="space-y-6" *ngIf="visibleStep === 'contact'">
+                <h1 class="text-2xl font-semibold text-neutral-900 mb-8">Contact</h1>
+
+                <app-input inputType="email" label="Email"></app-input>
+
+                <div class="flex items-start gap-2">
+                    <input type="checkbox" id="cbxSubscribe" class="hidden">
+                    <label for="cbxSubscribe"
+                        class="check cursor-pointer relative before:content-none before:absolute before:-top-4">
+                        <svg class="size-5 relative z-10 fill-none line-cap stroke-[#c8ccd4] stroke-[1.5] hover:stroke-[#4285f4]"
+                            viewBox="0 0 18 18">
+                            <path
+                                d="M1,9 L1,3.5 C1,2 2,1 3.5,1 L14.5,1 C16,1 17,2 17,3.5 L17,14.5 C17,16 16,17 14.5,17 L3.5,17 C2,17 1,16 1,14.5 L1,9 Z">
+                            </path>
+                            <polyline points="1 9 7 14 15 4"></polyline>
+                        </svg>
+                    </label>
+                    <Label htmlFor="newsletter" class="text-sm text-neutral-600">
+                        YES - Subscribe me to the Horizon Supply Co newsletter for new products and offers
+                    </Label>
+                </div>
+
+                <Button class="w-full bg-black hover:bg-neutral-800 text-white p-2.5 cursor-pointer"
+                    (click)="changeSteppper('shipping')">
+                    Continue to shipping
+                    <span class="w-4 h-4 ml-1">&rightarrow;</span>
+                </Button>
+            </section>
+
+            <section value="shipping" class="space-y-6" *ngIf="visibleStep === 'shipping'">
+                <h1 class="text-2xl font-semibold text-neutral-900 mb-8">Delivery</h1>
+
+                <div class="p-4 bg-neutral-50 rounded-lg space-y-4">
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center gap-2">
+                            <div class="w-6 h-6 rounded-full bg-neutral-200 flex items-center justify-center text-xs">
+                                1</div>
+                            <span class="text-sm font-medium">Contact</span>
+                        </div>
+                        <div class="text-sm">{{contactEmail}}</div>
+                        <button class="text-sm text-neutral-500 underline"
+                            (click)="changeSteppper('contact')">Edit</button>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="flex justify-between mb-4">
+                        <h3 class="font-medium">Shipping method</h3>
+                    </div>
+
+                    <div class="space-y-3">
+                        <button (click)="setDeliveryMethod('ship')"
+                            class="w-full flex items-center justify-between border rounded-md p-4 cursor-pointer"
+                            [ngClass]="{'bg-black text-white': deliveryMethod === 'ship'}">
+                            <div class="items-center gap-3">
+                                <div class="flex items-center gap-4">
+                                    <app-svg-icon iconName="truck" class="size-4"></app-svg-icon>
+                                    <div class="text-left justify-start">
+                                        <p class="font-medium">Ship to your address</p>
+                                        <p class="text-sm text-neutral-500">2-3 business days</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="font-medium">£40.00</span>
+                        </button>
+
+                        <button (click)="setDeliveryMethod('pickup')"
+                            class="w-full flex items-center justify-between border rounded-md p-4 cursor-pointer"
+                            [ngClass]="{'bg-black text-white': deliveryMethod === 'pickup'}">
+                            <div class="items-center gap-3">
+                                <div class="flex items-center gap-4">
+                                    <app-svg-icon iconName="building-store" class="size-4"></app-svg-icon>
+                                    <div class="text-left justify-start">
+                                        <p class="font-medium">Pickup in store</p>
+                                        <p class="text-sm text-neutral-500">Usually ready in 24 hours</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="font-medium">Free</span>
+                        </button>
+                    </div>
+                </div>
+
+                @if(deliveryMethod === "ship") {
+                <div class="space-y-4">
+                    <h3 class="font-medium">Shipping address</h3>
+
+                    <div>
+                        <div *ngIf="countries$ | async as countries">
+                            <app-select-input label="country/region" [options]="countries"
+                                (selectedEvent)="onSelectedCountry($event)"></app-select-input>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-3">
+                        <app-input inputType="text" label="First name"></app-input>
+                        <app-input inputType="text" label="Last name"></app-input>
+                    </div>
+
+                    <app-input inputType="text" label="Address"></app-input>
+
+                    <app-input inputType="text" label="Note"></app-input>
+
+                    <div class="grid grid-cols-3 gap-3">
+                        <app-input inputType="text" label="Postal code"></app-input>
+                        <app-input inputType="text" label="City"></app-input>
+                        <div *ngIf="states$ | async as states">
+                            <app-select-input label="state" [options]="states"
+                                (selectedEvent)="onSelectedState($event)"></app-select-input>
+                        </div>
+
+                    </div>
+
+                    <app-input inputType="tel" label="Phone"></app-input>
+                </div>
+                }
+
+                <Button class="w-full bg-black hover:bg-neutral-800 text-white p-2.5 cursor-pointer"
+                    (click)="changeSteppper('payment')">
+                    Continue to payment
+                    <span class="w-4 h-4 ml-1">&rightarrow;</span>
+                </Button>
+            </section>
+
+            <section value="payment" class="space-y-6" *ngIf="visibleStep === 'payment'">
+                <div class="mb-8 gap-2">
+                    <h1 class="text-2xl font-semibold text-neutral-900">Payment</h1>
+                    <p class="text-sm text-neutral-500 mb-4 flex items-center gap-2">
+                        <!-- <Lock class="w-4 h-4" /> -->
+                        <app-svg-icon iconName="shield-lock" class="size-4"></app-svg-icon>
+                        All transactions are secure and encrypted
+                    </p>
+                </div>
+
+                <div class="p-4 bg-neutral-50 rounded-lg space-y-4">
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center gap-2">
+                            <div class="w-6 h-6 rounded-full bg-neutral-200 flex items-center justify-center text-xs">
+                                1</div>
+                            <span class="text-sm font-medium">Contact</span>
+                        </div>
+                        <div class="text-sm">{{contactEmail}}</div>
+                        <button class="text-sm text-neutral-500 underline"
+                            (click)="changeSteppper('contact')">Edit</button>
+                    </div>
+
+                    <div class="border-t border-neutral-200 pt-4 flex justify-between items-center">
+                        <div class="flex items-center gap-2">
+                            <div class="w-6 h-6 rounded-full bg-neutral-200 flex items-center justify-center text-xs">
+                                2</div>
+                            <span class="text-sm font-medium">Ship to</span>
+                        </div>
+                        <div class="text-sm">{{shippingAddress}}</div>
+                        <button class="text-sm text-neutral-500 underline"
+                            (click)="changeSteppper('shipping')">Edit</button>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="font-medium mb-4">Payment method</h3>
+
+
+                    <div class="space-y-6">
+                        <section class="grid sm:grid-cols-3 justify-between gap-4">
+                            <div class="w-full">
+                                <button (click)="setPaymentMethod('card')"
+                                    class="w-full cursor-pointer flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary">
+                                    <!-- <CreditCardIcon class="mb-3 h-6 w-6" /> -->
+                                    <app-svg-icon iconName="credit-card" class="size-5"></app-svg-icon>
+                                    Tarjeta de Crédito
+                                </button>
+                            </div>
+
+                            <div class="w-full">
+                                <button (click)="setPaymentMethod('paypal')"
+                                    class="w-full cursor-pointer flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary">
+                                    <app-svg-icon iconName="brand-paypal" class="size-5"></app-svg-icon>
+                                    PayPal
+                                </button>
+                            </div>
+
+                            <div class="w-full">
+                                <button (click)="setPaymentMethod('klarna')"
+                                    class="w-full cursor-pointer flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary">
+                                    <app-svg-icon iconName="brand-klarna" class="size-5"></app-svg-icon>
+                                    Klarna
+                                </button>
+                            </div>
+                        </section>
+
+                        @if(paymentMethod === "card" ){
+                        <div class="space-y-4 mt-4 p-4 rounded-lg bg-card/50">
+                            <div class="space-y-2">
+                                <app-input inputType="text" placeholder="Name on card"></app-input>
+                            </div>
+                            <div class="space-y-2">
+                                <app-input inputType="number" placeholder="Card number"></app-input>
+                            </div>
+                            <div class="grid grid-cols-3 gap-4">
+                                <div class="space-y-2">
+                                    <app-input inputType="number" placeholder="MM"></app-input>
+                                </div>
+                                <div class="space-y-2">
+                                    <app-input inputType="number" placeholder="YYYY"></app-input>
+                                </div>
+                                <div class="space-y-2">
+                                    <app-input inputType="number" placeholder="CVV"></app-input>
+                                </div>
+                            </div>
+                        </div>
+                        }
+                    </div>
+
+                </div>
+
+                <div>
+                    <h3 class="font-medium mb-4">Additional information</h3>
+                    <app-input inputType="text" placeholder="RFC"></app-input>
+                </div>
+
+                @if(paymentMethod === "paypal"){
+                <div class="flex justify-center mt-4">
+                    <button
+                        class="w-full flex items-center p-3 bg-[#0070ba] hover:bg-[#005ea6] text-white gap-2.5 justify-center cursor-pointer">
+                        <span class="opacity-80 text-2xl">Pay with</span>
+                        <app-svg-icon iconName="brand-paypal" class="size-5"></app-svg-icon>
+                    </button>
+                </div>
+                }
+
+                @if(paymentMethod === "klarna"){
+                <div class="flex justify-center mt-4">
+
+                    <button
+                        class="w-full flex items-center p-4 bg-[#ffb3c7] hover:bg-[#ff8fab] text-black gap-2.5 justify-center cursor-pointer">
+                        <span class="opacity-80">Review order</span>
+                    </button>
+                </div>
+                }
+
+                @if(paymentMethod === "card"){
+                <Button class="w-full bg-black hover:bg-neutral-800 text-white p-2.5 cursor-pointer"
+                    (click)="completeOrder()">
+                    Complete order
+                </Button>
+                }
+
+                <p class="text-xs text-center text-neutral-500 flex items-center justify-center gap-1">
+                    <app-svg-icon iconName="lock" class="size-4"></app-svg-icon>
+                    Payments are secure and encrypted
+                </p>
+            </section>
+        </div>
+
+        <!-- Order Summary -->
+        <div class="lg:col-span-5">
+            <div class="bg-neutral-50 p-6 rounded-lg sticky top-6">
+                <h2 class="font-medium mb-6 pb-4 border-b">Order summary</h2>
+
+                <div class="space-y-4 max-h-[300px] overflow-auto pr-2">
+                    <div class="flex gap-3">
+                        <div class="relative">
+                            <img src="/placeholder.svg?height=64&width=64" alt="D-Generation Hoodie"
+                                class="w-16 h-16 object-cover rounded-md bg-white p-1" />
+                            <span
+                                class="absolute -top-2 -right-2 bg-black text-white w-5 h-5 rounded-full flex items-center justify-center text-xs">
+                                2
+                            </span>
+                        </div>
+                        <div class="flex-1">
+                            <p class="font-medium">D-Generation Hoodie</p>
+                            <p class="text-sm text-neutral-500">Small</p>
+                        </div>
+                        <p class="font-medium">£140.00</p>
+                    </div>
+
+                    <div class="flex gap-3">
+                        <div class="relative">
+                            <img src="/placeholder.svg?height=64&width=64" alt="NeX GEn Hoodie"
+                                class="w-16 h-16 object-cover rounded-md bg-white p-1" />
+                            <span
+                                class="absolute -top-2 -right-2 bg-black text-white w-5 h-5 rounded-full flex items-center justify-center text-xs">
+                                1
+                            </span>
+                        </div>
+                        <div class="flex-1">
+                            <p class="font-medium">NeX GEn Hoodie</p>
+                            <p class="text-sm text-neutral-500">Small</p>
+                        </div>
+                        <p class="font-medium">£65.00</p>
+                    </div>
+                </div>
+
+                <div class="mt-6 pt-4 border-t">
+                    <div class="flex gap-2 mb-6">
+                        <Input placeholder="Discount code" class="flex-1" />
+                        <Button variant="outline">Apply</Button>
+                    </div>
+
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-sm">
+                            <p class="text-neutral-500">Subtotal</p>
+                            <p>£205.00</p>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <p class="text-neutral-500">Shipping</p>
+                            <p>£40.00</p>
+                        </div>
+                        <div class="flex justify-between font-medium pt-4 mt-2 border-t">
+                            <p>Total</p>
+                            <div class="text-right">
+                                <p class="text-xs text-neutral-500">GBP</p>
+                                <p class="text-xl">£245.00</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
