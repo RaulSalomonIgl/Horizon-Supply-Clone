@@ -6,11 +6,17 @@ import { Observable } from 'rxjs';
 import { Product } from '../../modules/product/core/entities/product.model';
 import { CommonModule } from '@angular/common';
 import { PaginationComponent } from '../../components/pagination/pagination.component';
+import { LoaderComponent } from '../../components/loader/loader.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, ProductCardComponent, PaginationComponent],
+  imports: [
+    CommonModule,
+    ProductCardComponent,
+    PaginationComponent,
+    LoaderComponent,
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
   providers: [PRODUCT_REPOSITORY_PROVIDER, GetProductsUseCase],

@@ -1,5 +1,5 @@
-<div class="mx-auto py-2 px-6 sm:py-6 psm:x-10">
-    <ng-container *ngIf="products$ | async as products">
+<div class="mx-auto py-2 px-6 sm:py-6 psm:x-10" *ngIf="products$ | async as products">
+    <ng-container>
         <app-pagination [items]="products" [itemsPerPage]="16" (pageChange)="onPageChange($event)">
             <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
                 <div *ngFor="let product of pagedProducts">
@@ -9,7 +9,5 @@
         </app-pagination>
     </ng-container>
 
-    <div *ngIf="!(products$ | async)">
-        Loading products...
-    </div>
+    <app-loader *ngIf="!(products$ | async)"></app-loader>
 </div>
