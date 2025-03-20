@@ -9,6 +9,7 @@ import { CommonModule, CurrencyPipe } from '@angular/common';
 import { SvgIconComponent } from '../../../../icons/svg-icon/svg-icon.component';
 import { UpdateItemQuantityUseCase } from '../../core/use-cases/update-item-quantity.use-case';
 import { RouterLink } from '@angular/router';
+import { Item } from '../../core/entities/item.entity';
 
 @Component({
   selector: 'app-cart',
@@ -38,20 +39,20 @@ export class CartComponent implements OnInit {
     this.cart$ = this.getCart.execute();
   }
 
-  onIncreaseQuantity(itemId: number): void {
-    this.updateItemQuantity.execute(itemId, 1).subscribe(() => {
+  onIncreaseQuantity(item: Item): void {
+    this.updateItemQuantity.execute(item, 1).subscribe(() => {
       this.cart$ = this.getCart.execute(); // Actualizar el carrito
     });
   }
 
-  onDecreaseQuantity(itemId: number): void {
-    this.updateItemQuantity.execute(itemId, -1).subscribe(() => {
+  onDecreaseQuantity(item: Item): void {
+    this.updateItemQuantity.execute(item, -1).subscribe(() => {
       this.cart$ = this.getCart.execute(); // Actualizar el carrito
     });
   }
 
-  onRemoveItem(itemId: number): void {
-    this.removeFromCart.execute(itemId).subscribe(() => {
+  onRemoveItem(item: Item): void {
+    this.removeFromCart.execute(item).subscribe(() => {
       this.cart$ = this.getCart.execute(); // Actualizar el carrito
     });
   }

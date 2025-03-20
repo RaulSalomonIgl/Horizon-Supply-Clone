@@ -44,6 +44,12 @@ export class Item {
     public variant_title?: string
   ) {}
 
+  recalculateLinePrice(): void {
+    this.line_price = this.price * this.quantity;
+    this.original_line_price = this.price * this.quantity;
+    this.final_line_price = this.price * this.quantity;
+  }
+
   // Método estático para crear un Item a partir de un Product
   static fromProduct(
     product: Product,
@@ -83,11 +89,10 @@ export class Item {
       product.type,
       product.title,
       product.description,
-      product.options, // variant_options
-      product.options.map((option) => ({
-        name: option,
-        value: variant.title,
-      })), // options_with_values
+      [variant.title], // variant_options
+      product.options.map(
+        (option) => new OptionsWithValue(option, variant.title)
+      ), // options_with_values
       [], // line_level_discount_allocations
       0, // line_level_total_discount
       false, // has_components

@@ -1,14 +1,14 @@
 import { Inject, Injectable } from '@angular/core';
 import { CART_REPOSITORY } from '../tokens';
 import { CartInterface } from '../interfaces/cart.interface';
+import { Shipping } from '../entities/shipping.entity';
 import { Observable } from 'rxjs';
-import { Item } from '../entities/item.entity';
 
 @Injectable({ providedIn: 'root' })
-export class UpdateItemQuantityUseCase {
+export class ApplyShippingUseCase {
   constructor(@Inject(CART_REPOSITORY) private cartRepository: CartInterface) {}
 
-  execute(item: Item, quantity: number): Observable<void> {
-    return this.cartRepository.updateItemQuantity(item, quantity);
+  execute(shipping: Shipping): Observable<void> {
+    return this.cartRepository.applyShipping(shipping);
   }
 }
